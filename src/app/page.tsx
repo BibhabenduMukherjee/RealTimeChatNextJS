@@ -1,6 +1,8 @@
 import Button from "@/component/ui/Button";
+import { db } from "@/lib/db";
+export default async function Home() {
 
-export default function Home() {
+  
   return (
     <main className="">
       <h1 className="text-green-800">hello</h1>
