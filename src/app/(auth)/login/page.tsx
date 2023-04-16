@@ -1,6 +1,6 @@
 "use client"
 
-import Button from "@/component/ui/Button"
+import Button from "@/components/ui/Button"
 import {FC, useState} from "react"
 import {signIn} from "next-auth/react"
 import { toast } from "react-hot-toast"
@@ -14,8 +14,9 @@ const page: FC<pageProps> = ({}) =>{
          await signIn("google")
         }catch(err){
             // error
-        }finally{
             toast.error("Something is wrong with the login")
+        }finally{
+           
             setIsLoading(false)
         }
     }
@@ -25,13 +26,13 @@ const page: FC<pageProps> = ({}) =>{
            <div className="w-full flex flex-col max-w-md items-center space-y-8">
             <div className="flex flex-col items-center gap-8">
              logo
-             <h2 className="mt-6 text-center text-33xl font-bold tracking-tight text-gray-900">Sign in </h2>
+             <h2 className="mt-6 text-2xl text-center text-33xl font-bold tracking-tight text-gray-900">Sign in with Google</h2>
             </div>
 
             <Button
             isLoading={isLoading}
             type='button'
-            className='max-w-sm  text-white bg-slate-800 hover:bg-slate-700 justify-center items-center flex py-1 mx-auto w-full'
+            className='max-w-sm rounded-lg  text-white bg-slate-800 hover:bg-slate-700 justify-center items-center flex py-2 mx-auto w-full'
             onClick={loginWithGoogle}>
             {isLoading ? null : (
               <svg

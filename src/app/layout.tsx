@@ -1,4 +1,4 @@
-import Providers from '@/component/Providers'
+import Providers from '@/components/Providers'
 import './globals.css'
 
 export const metadata = {
