@@ -31,6 +31,7 @@ function AddFriendButton() {
         return
        }
        if(err instanceof AxiosError){
+       
         setError('email' , {message : err.response?.data})
         return 
        }
