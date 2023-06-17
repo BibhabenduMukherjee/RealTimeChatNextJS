@@ -8,6 +8,9 @@ import { addFriendValidate } from '@/lib/validation/add-friend'
 import { useForm } from 'react-hook-form'
 import {zodResolver} from "@hookform/resolvers/zod"
 type FormData = z.infer<typeof addFriendValidate>
+
+
+
 function AddFriendButton() {
       const [showsuc,setShowSuc] = useState<boolean>(false)
 
