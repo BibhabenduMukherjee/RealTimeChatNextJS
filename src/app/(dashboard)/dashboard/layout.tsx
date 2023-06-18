@@ -1,5 +1,8 @@
+
+import FriendRequestsSideBarOptions from "@/components/FriendRequestsSideBarOptions";
 import SignOutButton from "@/components/SignOutButton";
 import { Icon, Icons } from "@/components/icons";
+import { fetchRedis } from "@/helper/redis";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
@@ -32,10 +35,13 @@ const Layout = async({children} : LayoutProps)=>{
     // before reaching to the dashboard 
     // check for a valid session
    const session =  await getServerSession(authOptions)
+   const initialUnseenRequestsCount =  (await fetchRedis('smembers' , `user:${session?.user.id}:incoming_friend_requests`)).length
+   console.log(initialUnseenRequestsCount
+    )
    if(!session) notFound()
 
     return <div className="w-full flex h-screen">
-        <div className = 'flex h-full w-full max-w-xs grow flex-col gap-y-5 overflow-y-auto border border-gray-200 bg-white px-6'>
+        <div className = 'flex h-full w-full max-w-xs grow flex-col gap-y-5 overflow-y-auto border border-gray-200 bg-gray-100 opacity-90 px-6'>
         <Link href="/dashboard" className = 'flex h-16 shrink-0 items-center'></Link>
         <Icons.Logo className ='h-8 w-8 text-indigo-700' />
         <div className = 'text-xs font-semibold leading-6 text-gray-400'>Your chats</div>
@@ -66,6 +72,11 @@ const Layout = async({children} : LayoutProps)=>{
                 })}
                     </ul>
                 </li>
+
+               <li className = '-mt-6 -ml-2'>
+                <FriendRequestsSideBarOptions sessionId={session.user.name || ""} initialUnseenRequestsCount={initialUnseenRequestsCount}/>
+               </li>
+
                 <li className='-mx-6 mt-auto flex items-center'>
               <div className='flex flex-1 items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900'>
                 <div className='relative h-8 w-8 bg-gray-50'>
