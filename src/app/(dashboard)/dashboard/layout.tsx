@@ -2,6 +2,7 @@
 import FriendRequestsSideBarOptions from "@/components/FriendRequestsSideBarOptions";
 import SignOutButton from "@/components/SignOutButton";
 import { Icon, Icons } from "@/components/icons";
+import { getFriendsByUserId } from "@/helper/get-friends-by-user-id";
 import { fetchRedis } from "@/helper/redis";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
@@ -35,9 +36,10 @@ const Layout = async({children} : LayoutProps)=>{
     // before reaching to the dashboard 
     // check for a valid session
    const session =  await getServerSession(authOptions)
+   // get the friend list of logged users
+   const friends = await getFriendsByUserId(session!.user.id )
    const initialUnseenRequestsCount =  (await fetchRedis('smembers' , `user:${session?.user.id}:incoming_friend_requests`)).length
-   console.log(initialUnseenRequestsCount
-    )
+  
    if(!session) notFound()
 
     return <div className="w-full flex h-screen">
