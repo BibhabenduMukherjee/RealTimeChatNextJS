@@ -1,5 +1,6 @@
 
 import FriendRequestsSideBarOptions from "@/components/FriendRequestsSideBarOptions";
+import SidebarChatList from "@/components/SidebarChatList";
 import SignOutButton from "@/components/SignOutButton";
 import { Icon, Icons } from "@/components/icons";
 import { getFriendsByUserId } from "@/helper/get-friends-by-user-id";
@@ -50,7 +51,9 @@ const Layout = async({children} : LayoutProps)=>{
 
          <nav className = 'flex flex-1 flex-col'>
             <ul role = 'list' className = 'flex flex-1 flex-col gap-y-7'>
-                <li>this is one chat 1</li>
+            <li>
+              <SidebarChatList sessionId={session.user.id} friends={friends} />
+            </li>
                 <li>
                     <div className="text-xs font-semibold leading-6 text-gray-400">
                         Overview
