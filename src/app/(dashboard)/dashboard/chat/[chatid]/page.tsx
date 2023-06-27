@@ -54,6 +54,7 @@ const page = async({params} : PageProps) =>{
       const initialMessages = await getChatMessages(chatId)
 return (<>
 
+    <div className=""></div>
 
 </>)
 }
