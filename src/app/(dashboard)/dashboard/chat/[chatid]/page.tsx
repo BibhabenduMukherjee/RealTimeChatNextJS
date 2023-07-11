@@ -1,3 +1,4 @@
+import ChatInput from "@/components/ChatInput";
 import { fetchRedis } from "@/helper/redis";
 import { authOptions } from "@/lib/auth";
 import { messageArrayValidator } from "@/lib/validation/messageArrayValidator";
@@ -55,7 +56,7 @@ const page = async({params} : PageProps) =>{
 return (<>
 
     <div className="">
-      
+      {/* <ChatInput/> */}
     </div>
 
 </>)

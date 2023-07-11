@@ -21,6 +21,7 @@ const FriendRequests:FC<FriendRequestsProrps> = ({incomingFriendRequest , sessio
             prev.filter((request)=> request.senderId !== senderId)
         )
         router.refresh();
+        
 
 
     }
